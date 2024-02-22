@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateMarkdown = require('/Users/marissapratt/bootcamp/homework/Readme-Generator/utils/generateMarkdown.js')
 // TODO: Create an array of questions for user input
 const questions = [
     {
@@ -42,13 +43,25 @@ const questions = [
         type: 'input',
         name: 'email',
         message: 'What is your email?'
+    },
+    {
+        type: 'list',
+        name: 'License',
+        message: 'Choose a license for your project:',
+        choices: ['MIT', 'Apache', 'GPL', 'BSD', 'None']
     }
 ];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data, err) {
-    
-    err ? console.error(err) : console.log('README.md successfully made')
+    const formattedFileName = `${fileName.toLowerCase().split(' ').join('-')}.md`;
+    fs.writeFile(formattedFileName,data,(err) => {
+        if(err) {
+            console.error('Error writing file', err);
+        } else {
+            console.log('README.md successfully created')
+        }
+    });
  
 }
 
@@ -56,41 +69,15 @@ function writeToFile(fileName, data, err) {
 function init() {
     inquirer.prompt(questions)
     .then((response) => {
-        const readmeFile = 
-        `${response.title}
-        
-        ## Description 
-        ${response.Description}
-        
-        ## Table Of Contents
-        -[Installation]{#Installation}
-        -[Usage]{#Usage}
-        -[License]{#License}
-        -[Contributing]{#Contributing}
-        -[Tests]{#Tests}
-        -[Questions]{#Questions}
-        
-        ## Installation
-        ${response.Installation}
-        
-        ## Usage
-        ${response.Usage}
-        
-        ## License
-        
-        ## Contributing
-        ${response.Contributing}
-        
-        ## Tests
-        ${response.Tests}
-        
-        ## Questions
-        Github: ${response.GithubUrl}
-        Email: ${response.email}`;
-
+        const readmeFile = generateMarkdown(response);
         writeToFile('README.md', readmeFile);
     })
+    .catch((error) =>{
+        console.error('Error:', error);
+    })
 }
+
+
 
 // Function call to initialize app
 init();
