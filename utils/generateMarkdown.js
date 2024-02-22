@@ -41,30 +41,36 @@ ${licenseBadge}
  ${data.Description}
       
 ## Table Of Contents
-  -[Installation]{#Installation}
-  -[Usage]{#Usage}
-  -[License]{#License}
-  -[Contributing]{#Contributing}
-  -[Tests]{#Tests}
-  -[Questions]{#Questions}
+  1. [Installation](#Installation)
+  2. [Usage](#Usage)
+  3. [License](#License)
+  4. [Contributing](#Contributing)
+  5. [Tests](#Tests)
+  6. [Questions](#Questions)
       
-## Installation
+  <a id='Installation'></a>
+## Installation 
   ${data.Installation}
       
+  <a id='Usage'></a>
 ## Usage
   ${data.Usage}
       
+  <a id='License'></a>
  ## License
   ${licenseSection}
       
+  <a id='Contributing'></a>
 ## Contributing
   ${data.Contributing}
       
+  <a id='Tests'></a>
 ## Tests
   ${data.Tests}
       
+  <a id='Questions'></a>
 ## Questions
-  Github: ${data.GithubUrl}
+  Github: https://github.com/${data.Github}
   Email: ${data.email}
   ${licenseSection}`;
 }

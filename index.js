@@ -36,8 +36,8 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'GithubUrl',
-        message: 'What is the link to this github Repository?'
+        name: 'Github',
+        message: 'What is you github username?'
     },
     {
         type: 'input',
